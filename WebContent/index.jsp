@@ -12,18 +12,23 @@
 </head>
 <body>
 
-	<form action="ExibirTopico" method="POST" id="formExibirTopico">
-		<table>
-			<c:forEach var="topico" items="${listaTopicos}">
-				<tr>
-					<td>${topico.titulo}</td>
-					<td>${topico.nomeCriador}</td>
-					<td><a href="ExibirTopico?topicoID=${topico.numeroTopico}">Exibir</a></td>
-				</tr>
-			</c:forEach>
+	<div class="containerTopicos">
 
-		</table>
-	</form>
+		<form action="ExibirTopico" method="POST" id="formExibirTopico">
+			<table>
+				<c:forEach var="topico" items="${listaTopicos}">
+					<tr>
+						<td><b>Título: </b>${topico.titulo}</td>
+						<td><b>Criador: </b>${topico.nomeCriador}</td>
+						<td><a href="ExibirTopico?topicoID=${topico.numeroTopico}">Exibir</a></td>
+					</tr>
+				</c:forEach>
 
+			</table>
+		</form>
+
+		<a href="ListarRanking">Ranking</a> <a href="cadastrarTopico.html">Inserir
+			Tópico</a>
+	</div>
 </body>
 </html>

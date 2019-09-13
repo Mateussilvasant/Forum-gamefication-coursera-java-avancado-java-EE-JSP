@@ -1,5 +1,8 @@
 package services;
 
+import java.util.List;
+
+import dto.UsuarioTO;
 import model.Usuario;
 import model.dao.UsuarioDAO;
 
@@ -20,5 +23,15 @@ public class UsuarioService
     public void cadastrarUsuario(Usuario usuario) throws Exception
     {
 	dao.cadastrarUsuario(usuario);
+    }
+
+    public List<UsuarioTO> listarRanking() throws Exception
+    {
+	return dao.listarRanking();
+    }
+
+    public void atualizarPontos(Usuario usuario) throws Exception
+    {
+	dao.atualizarPontos(usuario);
     }
 }

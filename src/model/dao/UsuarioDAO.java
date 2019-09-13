@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.UsuarioTO;
 import model.Usuario;
 
 public class UsuarioDAO implements IUsuarioDAO
@@ -164,6 +165,61 @@ public class UsuarioDAO implements IUsuarioDAO
 	}
 
 	return usuario;
+    }
+
+    public List<UsuarioTO> listarRanking() throws Exception
+    {
+	List<UsuarioTO> usuarios = new ArrayList<>();
+
+	String sql = "SELECT login,nome,pontos FROM usuario ORDER BY PONTOS DESC";
+
+	try (Connection c = ConnectionFactory.getConnection())
+	{
+
+	    PreparedStatement ps = c.prepareStatement(sql);
+	    ResultSet result = ps.executeQuery();
+
+	    int colocao = 1;
+	    while (result.next())
+	    {
+		UsuarioTO usuario = new UsuarioTO();
+		usuario.setColocao(colocao);
+		usuario.setLogin(result.getString("login"));
+		usuario.setNome(result.getString("nome"));
+		usuario.setPontos(result.getInt("pontos"));
+		usuarios.add(usuario);
+		colocao++;
+	    }
+
+	} catch (SQLException e)
+	{
+	    throw new Exception("Ocorreu um erro interno!", e);
+	}
+
+	return usuarios;
+    }
+
+    public void atualizarPontos(Usuario usuario) throws Exception
+    {
+	String sql = "UPDATE usuario SET pontos = (?) WHERE login = (?)";
+
+	try (Connection c = ConnectionFactory.getConnection())
+	{
+
+	    PreparedStatement ps = c.prepareStatement(sql);
+	    ps.setInt(1, usuario.getPontos());
+	    ps.setString(2, usuario.getLogin());
+
+	    if (ps.executeUpdate() == 0)
+	    {
+		throw new Exception("Não foi possível atualizar os pontos!");
+	    }
+
+	} catch (SQLException e)
+	{
+	    throw new Exception("Ocorreu um erro interno!", e);
+	}
+
     }
 
 }

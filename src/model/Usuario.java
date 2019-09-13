@@ -64,4 +64,9 @@ public class Usuario
 	this.pontos = pontos;
     }
 
+    public void adicionarPontos(int ponto)
+    {
+	pontos = pontos + ponto;
+    }
+
 }

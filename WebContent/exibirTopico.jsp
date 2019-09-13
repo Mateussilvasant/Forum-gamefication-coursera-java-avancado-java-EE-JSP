@@ -42,7 +42,7 @@
 	</div>
 
 	<div class="barraOpcoes">
-		<a href="index.jsp">Tópicos</a>
+		<a href="ListarTopicos">Tópicos</a>
 	</div>
 
 </body>

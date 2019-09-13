@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Comentario;
 import model.Usuario;
 import services.ComentarioService;
+import services.UsuarioService;
 
 /**
  * Servlet implementation class CadastrarComentario
@@ -30,17 +31,26 @@ public class CadastrarComentario extends HttpServlet
 
 	try
 	{
-	    String login = ((Usuario) req.getSession().getAttribute("usuarioLogado")).getLogin();
+	    Usuario usuario = ((Usuario) req.getSession().getAttribute("usuarioLogado"));
 	    int idTopico = Integer.parseInt(req.getParameter("idTopico"));
 	    String conteudo = req.getParameter("textoComentario");
 
 	    ComentarioService comentarioService = new ComentarioService();
+	    UsuarioService usuarioService = new UsuarioService();
 
+	    /* Adiciona o comentário ao banco de dados */
 	    Comentario comentario = new Comentario();
 	    comentario.setConteudo(conteudo);
 	    comentario.setNumeroTopico(idTopico);
+	    comentarioService.cadastrarComentario(comentario, usuario.getLogin());
 
-	    comentarioService.cadastrarComentario(comentario, login);
+	    /* Adiciona os pontos e atualiza */
+	    usuario.adicionarPontos(3);
+	    usuarioService.atualizarPontos(usuario);
+
+	    /* Atualiza o usuário da sessão */
+	    req.getSession().setAttribute("usuarioLogado", null);
+	    req.getSession().setAttribute("usuarioLogado", usuario);
 
 	    req.setAttribute("topicoID", idTopico);
 	    req.getRequestDispatcher("/ExibirTopico").forward(req, resp);
