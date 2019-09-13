@@ -1,9 +1,6 @@
 package dto;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import model.Comentario;
 
 public class TopicoTO
 {
@@ -11,11 +8,10 @@ public class TopicoTO
     private String titulo;
     private String conteudo;
     private String nomeCriador;
-    private List<Comentario> comentarios;
+    private List<ComentarioTO> comentarios;
 
     public TopicoTO()
     {
-	comentarios = new ArrayList<>();
     }
 
     public String getTitulo()
@@ -48,14 +44,9 @@ public class TopicoTO
 	this.nomeCriador = nomeCriador;
     }
 
-    public List<Comentario> getComentarios()
+    public List<ComentarioTO> getComentarios()
     {
 	return comentarios;
-    }
-
-    public void adicionarComentario(Comentario comentario)
-    {
-	comentarios.add(comentario);
     }
 
     public int getNumeroTopico()
@@ -66,6 +57,11 @@ public class TopicoTO
     public void setNumeroTopico(int numeroTopico)
     {
 	this.numeroTopico = numeroTopico;
+    }
+
+    public void setListaComentarios(List<ComentarioTO> comentarios)
+    {
+	this.comentarios = comentarios;
     }
 
 }

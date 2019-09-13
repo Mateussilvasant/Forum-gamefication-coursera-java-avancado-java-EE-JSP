@@ -1,13 +1,19 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import dto.TopicoTO;
 import model.Usuario;
+import services.ComentarioService;
+import services.TopicoService;
 import services.UsuarioService;
 
 @WebServlet("/FazerLogin")
@@ -25,9 +31,14 @@ public class FazerLogin extends HttpServlet
 	    Usuario usuario;
 	    try
 	    {
-		usuario = new UsuarioService().realizarLogin(login, senha);
-		
-		
+		UsuarioService usuarioService = new UsuarioService();
+		TopicoService topicoService = new TopicoService();
+
+		usuario = usuarioService.realizarLogin(login, senha);
+		List<TopicoTO> topicos = topicoService.getListaTopicos(usuario.getLogin());
+
+		request.getSession().setAttribute("usuarioLogado", usuario);
+		request.setAttribute("listaTopicos", topicos);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 
 	    } catch (Exception e)

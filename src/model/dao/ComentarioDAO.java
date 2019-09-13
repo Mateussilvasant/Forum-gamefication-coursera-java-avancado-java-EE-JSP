@@ -14,7 +14,7 @@ public class ComentarioDAO implements IComentarioDAO
 {
 
     @Override
-    public List<ComentarioTO> getListaComentarios(int numeroTopico) throws Exception
+    public List<ComentarioTO> getListaComentarios(int numeroTopico) 
     {
 	List<ComentarioTO> comentarios = new ArrayList<>();
 
@@ -39,7 +39,7 @@ public class ComentarioDAO implements IComentarioDAO
 
 	} catch (SQLException e)
 	{
-	    throw new Exception("Não foi possível fazer o comentário");
+	    e.printStackTrace();
 	}
 
 	return comentarios;

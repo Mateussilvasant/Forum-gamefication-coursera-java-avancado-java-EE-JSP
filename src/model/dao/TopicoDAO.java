@@ -38,6 +38,40 @@ public class TopicoDAO implements ITopicoDAO
     }
 
     @Override
+    public TopicoTO consultarTopico(int id) throws Exception
+    {
+
+	try (Connection c = ConnectionFactory.getConnection())
+	{
+
+	    String sql = "SELECT t.titulo, t.conteudo, u.nome from\r\n" + "topicos as t inner join usuario as u\r\n"
+		    + "on t.login = u.login where t.topico = (?)";
+
+	    PreparedStatement ps = c.prepareStatement(sql);
+	    ps.setInt(1, id);
+	    ResultSet result = ps.executeQuery();
+
+	    if (result.next())
+	    {
+		TopicoTO topico = new TopicoTO();
+		topico.setNumeroTopico(id);
+		topico.setTitulo(result.getString("t.titulo"));
+		topico.setNomeCriador(result.getString("u.nome"));
+		topico.setConteudo(result.getString("t.conteudo"));
+		return topico;
+	    } else
+	    {
+		throw new Exception("Não foi possível localizar o tópico");
+	    }
+
+	} catch (SQLException e)
+	{
+	    throw new Exception("Ocorreu um erro interno!" + e, e);
+	}
+
+    }
+
+    @Override
     public List<TopicoTO> getListaTopicos(String login) throws Exception
     {
 

@@ -7,16 +7,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE-edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Login - Fórum</title>
-<link href="css/loginStyle.css" rel="stylesheet">
+<link href="css/styleApp.css" rel="stylesheet">
 </head>
 <body>
 
-	<div class="containerMensagem">S
+	<div class="containerMensagem">
 		<h1>${erro}</h1>
 	</div>
 
 	<form method="POST" action="FazerLogin" id="form">
-		<div class="loginContainer">
+		<div class="container">
 			<label for="login"><b>Login</b></label> <input type="text"
 				name="login" required placeholder="Informe o seu login" /> <label
 				for="senha"><b>Senha</b></label> <input type="password" name="senha"

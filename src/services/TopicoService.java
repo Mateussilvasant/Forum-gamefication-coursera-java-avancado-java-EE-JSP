@@ -25,4 +25,9 @@ public class TopicoService
     {
 	return topicoDAO.getListaTopicos(login);
     }
+
+    public TopicoTO consultarTopico(int idTopico) throws Exception
+    {
+	return topicoDAO.consultarTopico(idTopico);
+    }
 }

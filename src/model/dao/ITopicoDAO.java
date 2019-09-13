@@ -11,4 +11,6 @@ public interface ITopicoDAO
 
     List<TopicoTO> getListaTopicos(String login) throws Exception;
 
+    TopicoTO consultarTopico(int id) throws Exception;
+
 }

@@ -20,7 +20,7 @@ public class ComentarioService
 	comentarioDAO.cadastrarComentario(comentario, login);
     }
 
-    public List<ComentarioTO> getListaComentarios(int numeroTopico) throws Exception
+    public List<ComentarioTO> getListaComentarios(int numeroTopico) 
     {
 	return comentarioDAO.getListaComentarios(numeroTopico);
     }
