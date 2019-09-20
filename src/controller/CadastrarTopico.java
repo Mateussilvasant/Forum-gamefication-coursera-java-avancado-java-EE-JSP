@@ -19,6 +19,10 @@ public class CadastrarTopico extends HttpServlet
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+
+	request.setCharacterEncoding("utf-8");
+	response.setCharacterEncoding("utf-8");
+
 	String titulo = request.getParameter("titulo");
 	String conteudo = request.getParameter("textTopico");
 

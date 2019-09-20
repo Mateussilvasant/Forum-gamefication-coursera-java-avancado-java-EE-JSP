@@ -64,4 +64,23 @@ public class TopicoTO
 	this.comentarios = comentarios;
     }
 
+    public String getConteudoResumido()
+    {
+	if (conteudo.length() > 4)
+	{
+
+	    char[] texto = new char[conteudo.length() / 2];
+
+	    for (int i = 0; i < texto.length; i++)
+	    {
+		texto[i] = conteudo.charAt(i);
+	    }
+
+	    return new String(texto) + "...";
+
+	}
+	return conteudo;
+
+    }
+
 }

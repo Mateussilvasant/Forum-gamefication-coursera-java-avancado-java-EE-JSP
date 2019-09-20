@@ -1,14 +1,13 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dto.TopicoTO;
 import services.ComentarioService;
@@ -19,8 +18,12 @@ public class ExibirTopico extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
-    private void doExecute(HttpServletRequest req, HttpServletResponse resp)
+    private void doExecute(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException
     {
+
+	req.setCharacterEncoding("utf-8");
+	resp.setCharacterEncoding("utf-8");
+
 	int idTopico = 0;
 
 	try

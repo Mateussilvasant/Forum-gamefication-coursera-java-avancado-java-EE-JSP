@@ -21,6 +21,10 @@ public class CadastrarUsuario extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+
+	request.setCharacterEncoding("utf-8");
+	response.setCharacterEncoding("utf-8");
+
 	String nome = request.getParameter("nome");
 	String email = request.getParameter("email");
 	String senha = request.getParameter("senha");
@@ -37,11 +41,11 @@ public class CadastrarUsuario extends HttpServlet
 	try
 	{
 	    service.cadastrarUsuario(usuario);
-	    request.getRequestDispatcher("login.html").forward(request, response);
+	    request.getRequestDispatcher("login.jsp").forward(request, response);
 
 	} catch (Exception e)
 	{
-	    request.getRequestDispatcher("cadastrarUsuario.html").forward(request, response);
+	    request.getRequestDispatcher("cadastrarUsuario.jsp").forward(request, response);
 	}
     }
 

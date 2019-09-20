@@ -28,7 +28,10 @@ public class CadastrarComentario extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
-
+	
+	req.setCharacterEncoding("utf-8");
+	resp.setCharacterEncoding("utf-8");
+	
 	try
 	{
 	    Usuario usuario = ((Usuario) req.getSession().getAttribute("usuarioLogado"));
@@ -52,8 +55,11 @@ public class CadastrarComentario extends HttpServlet
 	    req.getSession().setAttribute("usuarioLogado", null);
 	    req.getSession().setAttribute("usuarioLogado", usuario);
 
-	    req.setAttribute("topicoID", idTopico);
-	    req.getRequestDispatcher("/ExibirTopico").forward(req, resp);
+	    //req.setAttribute("topicoID", idTopico);
+	    //req.getRequestDispatcher("/ExibirTopico").forward(req, resp);
+	    
+	    resp.sendRedirect(resp.encodeRedirectURL(req.getServletContext().getContextPath() + "/ExibirTopico?topicoID=" + idTopico));
+
 
 	} catch (NumberFormatException e)
 	{

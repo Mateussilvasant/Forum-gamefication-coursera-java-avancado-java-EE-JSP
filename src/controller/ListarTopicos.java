@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -33,14 +34,18 @@ public class ListarTopicos extends HttpServlet
 	doExecute(req, resp);
     }
 
-    public void doExecute(HttpServletRequest request, HttpServletResponse response)
+    public void doExecute(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException
     {
+	request.setCharacterEncoding("utf-8");
+	response.setCharacterEncoding("utf-8");
+
 	try
 	{
 	    String login = ((Usuario) request.getSession().getAttribute("usuarioLogado")).getLogin();
 
 	    TopicoService topico = new TopicoService();
 	    List<TopicoTO> topicos = topico.getListaTopicos(login);
+
 	    request.setAttribute("listaTopicos", topicos);
 	    request.getRequestDispatcher("index.jsp").forward(request, response);
 
