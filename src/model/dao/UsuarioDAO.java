@@ -76,61 +76,6 @@ public class UsuarioDAO implements IUsuarioDAO
 	return usuario;
     }
 
-    @Override
-    public void adicionarPontos(String login, int pontos) throws Exception
-    {
-	try (Connection c = ConnectionFactory.getConnection())
-	{
-
-	    String sql = "UPDATE usuario SET pontos = pontos + ? WHERE login = ?";
-	    PreparedStatement ps = c.prepareStatement(sql);
-
-	    ps.setInt(1, pontos);
-	    ps.setString(2, login);
-
-	    if (ps.executeUpdate() == 0)
-	    {
-		throw new Exception("Não foi possível adicionar os pontos!");
-	    }
-
-	} catch (SQLException e)
-	{
-	    throw new Exception("Ocorreu um erro interno!", e);
-	}
-    }
-
-    @Override
-    public List<Usuario> getRanking() throws Exception
-    {
-	List<Usuario> rankingUsuarios = new ArrayList<>();
-
-	try (Connection c = ConnectionFactory.getConnection())
-	{
-
-	    String sql = "SELECT * FROM USUARIO ORDER BY pontos DESC ";
-	    PreparedStatement ps = c.prepareStatement(sql);
-
-	    ResultSet result = ps.executeQuery();
-
-	    while (result.next())
-	    {
-		Usuario usuario = new Usuario();
-		usuario.setEmail(result.getString("email"));
-		usuario.setLogin(result.getString("login"));
-		usuario.setNome(result.getString("nome"));
-		usuario.setSenha(result.getString("senha"));
-		usuario.setPontos(result.getInt("pontos"));
-		rankingUsuarios.add(usuario);
-	    }
-
-	} catch (SQLException e)
-	{
-	    throw new Exception("Ocorreu um erro interno!", e);
-	}
-
-	return rankingUsuarios;
-    }
-
     public Usuario realizarLogin(String login, String senha) throws Exception
     {
 	Usuario usuario = null;

@@ -2,6 +2,7 @@ package model.dao;
 
 import java.util.List;
 
+import dto.UsuarioTO;
 import model.Usuario;
 
 public interface IUsuarioDAO
@@ -10,9 +11,9 @@ public interface IUsuarioDAO
 
     Usuario consultarUsuario(String login) throws Exception;
 
-    void adicionarPontos(String login, int pontos) throws Exception;
+    void atualizarPontos(Usuario usuario) throws Exception;
 
     Usuario realizarLogin(String login, String senha) throws Exception;
 
-    List<Usuario> getRanking() throws Exception;
+    List<UsuarioTO> listarRanking() throws Exception;
 }

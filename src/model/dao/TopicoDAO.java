@@ -19,7 +19,7 @@ public class TopicoDAO implements ITopicoDAO
 	try (Connection c = ConnectionFactory.getConnection())
 	{
 
-	    String sql = "INSERT INTO topicos(titulo,conteudo,login) VALUES((?),(?),(?))";
+	    String sql = "INSERT INTO topicos(titulo,conteudo,loginT) VALUES((?),(?),(?))";
 
 	    PreparedStatement ps = c.prepareStatement(sql);
 	    ps.setString(1, topico.getTitulo());
@@ -45,7 +45,7 @@ public class TopicoDAO implements ITopicoDAO
 	{
 
 	    String sql = "SELECT t.titulo, t.conteudo, u.nome from\r\n" + "topicos as t inner join usuario as u\r\n"
-		    + "on t.login = u.login where t.topico = (?)";
+		    + "on t.loginT = u.login where t.topico = (?)";
 
 	    PreparedStatement ps = c.prepareStatement(sql);
 	    ps.setInt(1, id);
@@ -81,7 +81,7 @@ public class TopicoDAO implements ITopicoDAO
 	{
 
 	    String sql = "SELECT t.topico, t.titulo, t.conteudo, u.nome from\r\n"
-		    + "topicos as t inner join usuario as u\r\n" + "on t.login = u.login where u.login = (?)";
+		    + "topicos as t inner join usuario as u\r\n" + "on t.loginT = u.login where u.login = (?)";
 
 	    PreparedStatement ps = c.prepareStatement(sql);
 	    ps.setString(1, login);

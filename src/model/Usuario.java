@@ -69,4 +69,11 @@ public class Usuario
 	pontos = pontos + ponto;
     }
 
+    @Override
+    public String toString()
+    {
+	return "Usuario [login=" + login + ", nome=" + nome + ", senha=" + senha + ", email=" + email + ", pontos="
+		+ pontos + "]";
+    }
+
 }
