@@ -22,7 +22,7 @@ public class ConnectionFactory
     public static Connection getConnection() throws SQLException
     {
 	return DriverManager.getConnection(
-		"jdbc:mysql://localhost:3306/forumappbd?useTimezone=true&useSSL=false&serverTimezone=America/Sao_Paulo",
-		"root", "pass123");
+		"jdbc:mysql://127.0.0.1:3306/forumappbd?useTimezone=true&serverTimezone=America/Sao_Paulo&useSSL=false",
+		"mateus", "fhfhhf234sant");
     }
 }

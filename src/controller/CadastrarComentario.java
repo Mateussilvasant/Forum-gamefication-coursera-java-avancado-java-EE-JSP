@@ -55,9 +55,6 @@ public class CadastrarComentario extends HttpServlet
 	    req.getSession().setAttribute("usuarioLogado", null);
 	    req.getSession().setAttribute("usuarioLogado", usuario);
 
-	    //req.setAttribute("topicoID", idTopico);
-	    //req.getRequestDispatcher("/ExibirTopico").forward(req, resp);
-	    
 	    resp.sendRedirect(resp.encodeRedirectURL(req.getServletContext().getContextPath() + "/ExibirTopico?topicoID=" + idTopico));
 
 

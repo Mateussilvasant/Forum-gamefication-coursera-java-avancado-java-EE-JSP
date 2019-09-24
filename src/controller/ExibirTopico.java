@@ -50,6 +50,7 @@ public class ExibirTopico extends HttpServlet
 	try
 	{
 	    TopicoTO topico = topicoService.consultarTopico(idTopico);
+	    topico = topicoService.adicionarConteudoResumido(topico);
 	    topico.setListaComentarios(comentarioService.getListaComentarios(topico.getNumeroTopico()));
 
 	    req.setAttribute("topico", topico);

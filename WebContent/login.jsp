@@ -54,18 +54,28 @@
 
 		</form>
 
-
-		<c:if test="${not empty erro}">
-			<div class="alert alert-warning alert-dismissible fade show"
-				role="alert">
-				<button type="button" class="close" data-dismiss="alert"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<strong>Erro Login </strong>${erro}
-			</div>
-		</c:if>
-
+		<c:choose>
+			<c:when test="${not empty erroLogin}">
+				<div class="alert alert-warning alert-dismissible fade show"
+					role="alert">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<strong>Erro Login </strong>${erroLogin}
+				</div>
+			</c:when>
+			<c:when test="${not empty param.cadastroUsuarioSucesso}">
+				<div class="alert alert-info alert-dismissible fade show"
+					role="alert">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<strong>Informação</strong> Faça Login com seu novo usuário!
+				</div>
+			</c:when>
+		</c:choose>
 
 	</div>
 

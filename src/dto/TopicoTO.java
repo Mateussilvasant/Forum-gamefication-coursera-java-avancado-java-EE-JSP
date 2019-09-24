@@ -4,14 +4,17 @@ import java.util.List;
 
 public class TopicoTO
 {
+
     private int numeroTopico;
     private String titulo;
     private String conteudo;
     private String nomeCriador;
     private List<ComentarioTO> comentarios;
+    private String conteudoResumido;
 
     public TopicoTO()
     {
+	super();
     }
 
     public String getTitulo()
@@ -66,21 +69,20 @@ public class TopicoTO
 
     public String getConteudoResumido()
     {
-	if (conteudo.length() > 4)
-	{
+	return conteudoResumido;
+    }
 
-	    char[] texto = new char[conteudo.length() / 2];
+    public void setConteudoResumido(String conteudoResumido)
+    {
+	this.conteudoResumido = conteudoResumido;
+    }
 
-	    for (int i = 0; i < texto.length; i++)
-	    {
-		texto[i] = conteudo.charAt(i);
-	    }
-
-	    return new String(texto) + "...";
-
-	}
-	return conteudo;
-
+    @Override
+    public String toString()
+    {
+	return "TopicoTO [numeroTopico=" + numeroTopico + ", titulo=" + titulo + ", conteudo=" + conteudo
+		+ ", nomeCriador=" + nomeCriador + ", comentarios=" + comentarios + ", conteudoResumido="
+		+ conteudoResumido + "]";
     }
 
 }

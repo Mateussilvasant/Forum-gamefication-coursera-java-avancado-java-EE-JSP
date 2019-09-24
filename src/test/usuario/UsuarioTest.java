@@ -9,7 +9,9 @@ import org.dbunit.Assertion;
 import org.dbunit.JdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
+import org.dbunit.operation.DatabaseOperation;
 import org.dbunit.util.fileloader.FlatXmlDataFileLoader;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,41 +37,23 @@ class UsuarioTest
     }
 
     @BeforeEach
-    void setUp() throws Exception
+    void setUp()
     {
-	usuarioDao = new UsuarioDAO();
+	try
+	{
+	    usuarioDao = new UsuarioDAO();
 
-	databaseTester = new JdbcDatabaseTester("com.mysql.cj.jdbc.Driver",
-		"jdbc:mysql://127.0.0.1:3306/forumappbd?useTimezone=true&serverTimezone=America/Sao_Paulo&useSSL=false",
-		"mateus", "fhfhhf234sant");
+	    databaseTester = new JdbcDatabaseTester("com.mysql.cj.jdbc.Driver",
+		    "jdbc:mysql://127.0.0.1:3306/forumappbd?useTimezone=true&serverTimezone=America/Sao_Paulo&useSSL=false",
+		    "mateus", "fhfhhf234sant");
 
-	FlatXmlDataFileLoader xml = new FlatXmlDataFileLoader();
-	databaseTester.setDataSet(xml.load("/test/usuario/inicio.xml"));
-	databaseTester.onSetup();
-    }
-
-    /* Testa se os pontos foram calculados corretamente */
-    @Test
-    public void atualizarPontos() throws SQLException, Exception
-    {
-
-	Usuario usuario = new Usuario();
-	usuario.setLogin("will132");
-	usuario.setNome("William");
-	usuario.setSenha("mn222");
-	usuario.setEmail("willfasn@gmail.com");
-	usuario.setPontos(29);
-
-	usuario.adicionarPontos(3);
-	usuarioDao.atualizarPontos(usuario);
-
-	IDataSet databaseAtual = databaseTester.getConnection().createDataSet();
-	ITable tabelaAtual = databaseAtual.getTable("usuario");
-
-	FlatXmlDataFileLoader xml = new FlatXmlDataFileLoader();
-	ITable tabelaEsperada = xml.load("/test/usuario/adicionarPontosDataSet.xml").getTable("usuario");
-
-	Assertion.assertEquals(tabelaEsperada, tabelaAtual);
+	    FlatXmlDataFileLoader xml = new FlatXmlDataFileLoader();
+	    databaseTester.setDataSet(xml.load("/test/usuario/inicio.xml"));
+	    databaseTester.onSetup();
+	} catch (Exception e)
+	{
+	    e.printStackTrace();
+	}
 
     }
 
@@ -110,6 +94,31 @@ class UsuarioTest
 	Usuario usuarioRetorno = usuarioDao.consultarUsuario(usuarioEsperado.getLogin());
 
 	assertEquals(usuarioRetorno.toString(), usuarioEsperado.toString());
+
+    }
+
+    /* Testa se os pontos foram calculados corretamente */
+    @Test
+    public void atualizarPontos() throws SQLException, Exception
+    {
+
+	Usuario usuario = new Usuario();
+	usuario.setLogin("will132");
+	usuario.setNome("William");
+	usuario.setSenha("mn222");
+	usuario.setEmail("willfasn@gmail.com");
+	usuario.setPontos(29);
+
+	usuario.adicionarPontos(3);
+	usuarioDao.atualizarPontos(usuario);
+
+	IDataSet databaseAtual = databaseTester.getConnection().createDataSet();
+	ITable tabelaAtual = databaseAtual.getTable("usuario");
+
+	FlatXmlDataFileLoader xml = new FlatXmlDataFileLoader();
+	ITable tabelaEsperada = xml.load("/test/usuario/adicionarPontosDataSet.xml").getTable("usuario");
+
+	Assertion.assertEquals(tabelaEsperada, tabelaAtual);
 
     }
 
@@ -176,6 +185,12 @@ class UsuarioTest
 
 	assertEquals("Lista não ordenada por maior ranking", ordenadoEsperado, ordenadoAtual);
 
+    }
+
+    @AfterEach
+    public void reset() throws Exception
+    {
+	DatabaseOperation.DELETE_ALL.execute(databaseTester.getConnection(), databaseTester.getDataSet());
     }
 
 }

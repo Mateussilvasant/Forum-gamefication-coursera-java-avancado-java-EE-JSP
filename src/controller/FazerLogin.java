@@ -41,7 +41,7 @@ public class FazerLogin extends HttpServlet
 
 	    } catch (Exception e)
 	    {
-		request.setAttribute("erro", e.getLocalizedMessage());
+		request.setAttribute("erroLogin", e.getLocalizedMessage());
 		request.getRequestDispatcher("login.jsp").forward(request, response);
 	    }
 

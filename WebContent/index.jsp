@@ -46,7 +46,7 @@
 								</div>
 								<div class="card-body">
 									<h5 class="card-title">${topico.titulo}</h5>
-									<p class="card-text">${topico.getConteudoResumido()}</p>
+									<p class="card-text">${topico.conteudoResumido}</p>
 									<a class="btn btn-primary"
 										href="ExibirTopico?topicoID=${topico.numeroTopico}">Exibir</a>
 								</div>

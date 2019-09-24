@@ -41,7 +41,8 @@ public class CadastrarUsuario extends HttpServlet
 	try
 	{
 	    service.cadastrarUsuario(usuario);
-	    request.getRequestDispatcher("login.jsp").forward(request, response);
+
+	    response.sendRedirect(request.getContextPath() + "/login.jsp?cadastroUsuarioSucesso=sucesso");
 
 	} catch (Exception e)
 	{

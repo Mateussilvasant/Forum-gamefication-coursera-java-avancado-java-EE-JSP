@@ -30,4 +30,11 @@ public class TopicoService
     {
 	return topicoDAO.consultarTopico(idTopico);
     }
+
+    public TopicoTO adicionarConteudoResumido(TopicoTO topico)
+    {
+	String conteudo = topico.getConteudo();
+	topico.setConteudoResumido(conteudo.substring(0, conteudo.length() / 2));
+	return topico;
+    }
 }
