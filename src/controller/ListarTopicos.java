@@ -34,24 +34,26 @@ public class ListarTopicos extends HttpServlet
 	doExecute(req, resp);
     }
 
-    public void doExecute(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException
+    public void doExecute(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
 	request.setCharacterEncoding("utf-8");
 	response.setCharacterEncoding("utf-8");
 
 	try
 	{
-	    String login = ((Usuario) request.getSession().getAttribute("usuarioLogado")).getLogin();
 
-	    TopicoService topico = new TopicoService();
-	    List<TopicoTO> topicos = topico.getListaTopicos(login);
+	    TopicoService topicoService = new TopicoService();
+
+	    List<TopicoTO> topicos = topicoService.getListaTopicos();
+	    topicoService.addConteudoResumidoLista(topicos);
 
 	    request.setAttribute("listaTopicos", topicos);
 	    request.getRequestDispatcher("index.jsp").forward(request, response);
 
 	} catch (Exception e)
 	{
-	    e.printStackTrace();
+	    response.sendRedirect(response.encodeRedirectURL(
+		    request.getContextPath() + "/ListarTopicos?topicosResult=" + e.getLocalizedMessage()));
 	}
     }
 

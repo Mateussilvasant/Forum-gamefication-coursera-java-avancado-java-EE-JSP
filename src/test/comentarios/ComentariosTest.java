@@ -85,7 +85,7 @@ class ComentariosTest
     }
 
     @Test
-    public void getListaComentarios()
+    public void getListaComentarios() throws Exception
     {
 	List<ComentarioTO> lista = comentarioDAO.getListaComentarios(4);
 

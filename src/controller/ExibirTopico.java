@@ -18,7 +18,7 @@ public class ExibirTopico extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
-    private void doExecute(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException
+    private void doExecute(HttpServletRequest req, HttpServletResponse resp) throws IOException
     {
 
 	req.setCharacterEncoding("utf-8");
@@ -39,18 +39,10 @@ public class ExibirTopico extends HttpServlet
 
 	    }
 
-	} catch (NumberFormatException e)
-	{
-	    e.printStackTrace();
-	}
+	    TopicoService topicoService = new TopicoService();
+	    ComentarioService comentarioService = new ComentarioService();
 
-	TopicoService topicoService = new TopicoService();
-	ComentarioService comentarioService = new ComentarioService();
-
-	try
-	{
 	    TopicoTO topico = topicoService.consultarTopico(idTopico);
-	    topico = topicoService.adicionarConteudoResumido(topico);
 	    topico.setListaComentarios(comentarioService.getListaComentarios(topico.getNumeroTopico()));
 
 	    req.setAttribute("topico", topico);
@@ -59,6 +51,8 @@ public class ExibirTopico extends HttpServlet
 	} catch (Exception e)
 	{
 	    e.printStackTrace();
+	    resp.sendRedirect(resp.encodeRedirectURL(
+		    req.getContextPath() + "/ListarTopicos?exibirResult=" + e.getLocalizedMessage()));
 	}
 
     }

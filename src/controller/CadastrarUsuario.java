@@ -41,12 +41,15 @@ public class CadastrarUsuario extends HttpServlet
 	try
 	{
 	    service.cadastrarUsuario(usuario);
-
-	    response.sendRedirect(request.getContextPath() + "/login.jsp?cadastroUsuarioSucesso=sucesso");
+	    response.sendRedirect(
+		    response.encodeRedirectURL(request.getContextPath() + "/login.jsp?cadastroUsuarioSucesso=sucesso"));
 
 	} catch (Exception e)
 	{
-	    request.getRequestDispatcher("cadastrarUsuario.jsp").forward(request, response);
+
+	    response.sendRedirect(response.encodeRedirectURL(
+		    request.getContextPath() + "/cadastrarUsuario.jsp?cadastroResult=" + e.getLocalizedMessage()));
+
 	}
     }
 

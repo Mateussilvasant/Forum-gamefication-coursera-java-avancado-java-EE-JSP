@@ -21,6 +21,12 @@ html {
 	padding-bottom: 40px;
 }
 
+.bodyIndex {
+	background: rgb(213, 213, 213);
+	background: radial-gradient(circle, rgba(213, 213, 213, 1) 0%,
+		rgba(168, 169, 171, 1) 100%);
+}
+
 .formLogin {
 	width: 100%;
 	max-width: 330px;
@@ -29,10 +35,9 @@ html {
 }
 
 .formTopico {
-	max-width: 400px;
 	margin: 0 auto;
-	padding: 15px;
-	width: 100%;s
+	padding: 1%;
+	width: 100%;
 }
 
 .cardTopico {
@@ -40,3 +45,27 @@ html {
 	margin-top: 50px;
 }
 
+.card-header {
+	background-color: #343434;
+}
+
+.card {
+	
+}
+
+.tituloCriador {
+	color: #F7F3F3;
+}
+
+.subBackground {
+	background-color: #F4F4F8;
+	margin: 5%;
+	padding-bottom: 1%;
+	padding-top: 1%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+.tituloTopico {
+	color: #40474E;
+}

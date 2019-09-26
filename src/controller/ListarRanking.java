@@ -32,7 +32,8 @@ public class ListarRanking extends HttpServlet
 
 	} catch (Exception e)
 	{
-	    e.printStackTrace();
+	    response.sendRedirect(response.encodeRedirectURL(
+		    request.getContextPath() + "/ListarRanking?rankingResult=" + e.getLocalizedMessage()));
 	}
     }
 

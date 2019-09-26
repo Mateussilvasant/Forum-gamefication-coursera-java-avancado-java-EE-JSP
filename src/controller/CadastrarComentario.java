@@ -28,14 +28,16 @@ public class CadastrarComentario extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
-	
+
 	req.setCharacterEncoding("utf-8");
 	resp.setCharacterEncoding("utf-8");
-	
+
+	int idTopico = 0;
+
 	try
 	{
 	    Usuario usuario = ((Usuario) req.getSession().getAttribute("usuarioLogado"));
-	    int idTopico = Integer.parseInt(req.getParameter("idTopico"));
+	    idTopico = Integer.parseInt(req.getParameter("idTopico"));
 	    String conteudo = req.getParameter("textoComentario");
 
 	    ComentarioService comentarioService = new ComentarioService();
@@ -55,15 +57,13 @@ public class CadastrarComentario extends HttpServlet
 	    req.getSession().setAttribute("usuarioLogado", null);
 	    req.getSession().setAttribute("usuarioLogado", usuario);
 
-	    resp.sendRedirect(resp.encodeRedirectURL(req.getServletContext().getContextPath() + "/ExibirTopico?topicoID=" + idTopico));
+	    resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath() + "/ExibirTopico?topicoID=" + idTopico));
 
-
-	} catch (NumberFormatException e)
-	{
-	    e.printStackTrace();
 	} catch (Exception e)
 	{
-	    e.printStackTrace();
+	    resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath() + "/ExibirTopico?topicoID=" + idTopico
+		    + "&comentarioResult=" + e.getLocalizedMessage()));
+
 	}
     }
 

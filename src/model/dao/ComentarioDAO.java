@@ -14,15 +14,15 @@ public class ComentarioDAO implements IComentarioDAO
 {
 
     @Override
-    public List<ComentarioTO> getListaComentarios(int numeroTopico)
+    public List<ComentarioTO> getListaComentarios(int numeroTopico) throws Exception
     {
 	List<ComentarioTO> comentarios = new ArrayList<>();
 
 	try (Connection c = ConnectionFactory.getConnection())
 	{
 
-	    String sql = "SELECT u.nome, c.conteudoC from comentarios c inner join usuario u \r\n"
-		    + "on c.loginC = u.login where c.topicoC = (?)";
+	    String sql = "SELECT u.nome, c.conteudoC from comentarios c inner join usuario u on "
+		    + "c.loginC = u.login where c.topicoC = (?) order by c.comentario ASC";
 
 	    PreparedStatement ps = c.prepareStatement(sql);
 	    ps.setInt(1, numeroTopico);
@@ -39,7 +39,7 @@ public class ComentarioDAO implements IComentarioDAO
 
 	} catch (SQLException e)
 	{
-	    e.printStackTrace();
+	    throw new Exception("Ocorreu um erro interno!", e);
 	}
 
 	return comentarios;

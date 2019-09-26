@@ -15,12 +15,24 @@ public class ComentarioService
 	comentarioDAO = new ComentarioDAO();
     }
 
+    /**
+     * Realiza o cadastro do coemntario feito pelo usuário no Banco de Dados
+     * 
+     * @param comentario
+     * @param login
+     * @throws Exception
+     */
     public void cadastrarComentario(Comentario comentario, String login) throws Exception
     {
 	comentarioDAO.cadastrarComentario(comentario, login);
     }
 
-    public List<ComentarioTO> getListaComentarios(int numeroTopico) 
+    /**
+     * @param numeroTopico
+     * @return retorna uma lista de coemntarios do tópico.
+     * @throws Exception
+     */
+    public List<ComentarioTO> getListaComentarios(int numeroTopico) throws Exception
     {
 	return comentarioDAO.getListaComentarios(numeroTopico);
     }

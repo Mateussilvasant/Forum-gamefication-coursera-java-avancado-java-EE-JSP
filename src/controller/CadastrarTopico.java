@@ -47,11 +47,14 @@ public class CadastrarTopico extends HttpServlet
 
 		request.getSession().setAttribute("usuarioLogado", null);
 		request.getSession().setAttribute("usuarioLogado", usuario);
-		request.getRequestDispatcher("/ListarTopicos").forward(request, response);
+
+		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/ListarTopicos"));
 
 	    } catch (Exception e)
 	    {
 		e.printStackTrace();
+		response.sendRedirect(response.encodeRedirectURL(
+			request.getContextPath() + "/cadastrarTopico.jsp?erroCadastro=" + e.getLocalizedMessage()));
 	    }
 	}
     }

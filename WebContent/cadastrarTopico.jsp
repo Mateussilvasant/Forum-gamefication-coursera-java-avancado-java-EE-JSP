@@ -12,36 +12,53 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 </head>
-<body class="bodyCenter">
+<body class="bodyIndex">
 
-	<div class="container">
-		<form method="POST" action="CadastrarTopico">
+	<c:import url="menuBar.jsp"></c:import>
 
-			<h2>Novo Tópico</h2>
-			<hr></hr>
+	<div class="subBackground">
+		<div class="container-fluid">
+			<form method="POST" action="CadastrarTopico">
 
-			<div class="form-group">
+				<h2>Novo Tópico</h2>
+				<hr></hr>
 
-				<label for="idTitulo">Título</label> <input maxlength="100" class="form-control"
-					id="idTitulo" type="text" placeholder="Informe um título"
-					name="titulo" required>
+				<div class="form-group">
 
-			</div>
+					<label for="idTitulo">Título</label> <input maxlength="100"
+						class="form-control" id="idTitulo" type="text"
+						placeholder="Informe um título" name="titulo" required>
 
-			<div class="form-group">
-				<label for="areaConteudo">Conteúdo</label>
-				<textarea class="form-control" id="areaConteudo" required
-					maxlength="1000" name="textTopico"></textarea>
-			</div>
-
-			<div class="d-flex justify-content-center form-group">
-				<div class="p-4">
-					<button class="btn btn-primary" type="submit">Enviar
-						Tópico</button>
 				</div>
-			</div>
-		</form>
 
+				<div class="form-group">
+					<label for="areaConteudo">Conteúdo</label>
+					<textarea class="form-control" id="areaConteudo" required
+						maxlength="1000" name="textTopico"></textarea>
+				</div>
+
+				<div class="d-flex justify-content-center form-group">
+					<div class="p-4">
+						<button class="btn btn-primary" type="submit">Enviar
+							Tópico</button>
+					</div>
+				</div>
+
+
+				<c:if test="${not empty param.erroCadastro}">
+					<div class="alert alert-danger alert-dismissible fade show"
+						role="alert">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<strong>Cadastro Erro - </strong>${param.erroCadastro}
+					</div>
+				</c:if>
+
+
+			</form>
+		</div>
 	</div>
 
 

@@ -105,4 +105,36 @@ public class TopicoDAO implements ITopicoDAO
 	return listaTopicos;
     }
 
+    @Override
+    public List<TopicoTO> getListaTopicos() throws Exception
+    {
+	List<TopicoTO> listaTopicos = new ArrayList<>();
+
+	try (Connection c = ConnectionFactory.getConnection())
+	{
+
+	    String sql = "SELECT t.topico, t.titulo, t.conteudo, u.nome from\r\n"
+		    + "topicos as t inner join usuario as u\r\n" + "on t.loginT = u.login order by t.topico DESC";
+
+	    PreparedStatement ps = c.prepareStatement(sql);
+	    ResultSet result = ps.executeQuery();
+
+	    while (result.next())
+	    {
+		TopicoTO topico = new TopicoTO();
+		topico.setNumeroTopico(result.getInt("t.topico"));
+		topico.setTitulo(result.getString("t.titulo"));
+		topico.setNomeCriador(result.getString("u.nome"));
+		topico.setConteudo(result.getString("t.conteudo"));
+		listaTopicos.add(topico);
+	    }
+
+	} catch (SQLException e)
+	{
+	    throw new Exception("Ocorreu um erro interno!", e);
+	}
+
+	return listaTopicos;
+    }
+
 }

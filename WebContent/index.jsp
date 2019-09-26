@@ -10,57 +10,80 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Início - Fórum</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body class="bodyIndex">
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="ListarTopicos">Home</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarNav" aria-controls="navbarNav"
-			aria-expanded="false" aria-label="Alterna navegação">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link"
-					href="ListarRanking">Ranking</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="cadastrarTopico.jsp">Inserir Tópico</a></li>
-			</ul>
-		</div>
-	</nav>
+	<c:import url="menuBar.jsp"></c:import>
 
+	<div class="container-fluid">
+		<h3>
+			<b>Fórum Web</b> - Tópicos
+		</h3>
+		<hr></hr>
 
+	</div>
 
-	<div class="container">
+	<div class="subBackground">
 
-		<form action="ExibirTopico" method="POST" id="formExibirTopico">
-			<table class="table">
-				<c:forEach var="topico" items="${listaTopicos}">
-					<tr>
-						<td>
+		<div class="container-fluid mb-4">
+
+			<c:if test="${not empty param.exibirResult}">
+
+				<div class="alert alert-danger alert-dismissible fade show"
+					role="alert">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<strong>Erro - </strong>Não foi possível exibir o tópico.
+					${param.comentarioResult}
+				</div>
+
+			</c:if>
+
+			<form action="ExibirTopico" method="POST" id="formExibirTopico">
+
+				<c:if test="${not empty param.topicosResult}">
+					<div class="alert alert-danger alert-dismissible fade show"
+						role="alert">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<strong>Erro - </strong>Não foi possível trazer a lista de
+						tópicos... ${param.topicosResult}
+					</div>
+				</c:if>
+
+				<c:choose>
+					<c:when test="${not empty listaTopicos}">
+
+						<c:forEach var="topico" items="${listaTopicos}">
+							<div class="p-2"></div>
 							<div class="card">
 								<div class="card-header">
-									Criador por <b>${topico.nomeCriador}</b>
+									<div class="tituloCriador">
+										Criador por <b>${topico.nomeCriador}</b>
+									</div>
 								</div>
 								<div class="card-body">
-									<h5 class="card-title">${topico.titulo}</h5>
+									<h5 class="card-title">
+										<a class="tituloTopico"
+											href="ExibirTopico?topicoID=${topico.numeroTopico}">${topico.titulo}</a>
+									</h5>
 									<p class="card-text">${topico.conteudoResumido}</p>
-									<a class="btn btn-primary"
-										href="ExibirTopico?topicoID=${topico.numeroTopico}">Exibir</a>
 								</div>
-
 							</div>
-
-						</td>
-					</tr>
-				</c:forEach>
-
-			</table>
-		</form>
-
-
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<div class="d-flex justify-content-center alert alert-dark"
+							role="alert">Sem tópicos para mostrar...</div>
+					</c:otherwise>
+				</c:choose>
+			</form>
+		</div>
 	</div>
 
 	<script src="js/jquery-3.4.1.min.js"></script>

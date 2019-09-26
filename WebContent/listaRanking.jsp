@@ -12,38 +12,53 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 </head>
-<body>
+<body class="bodyIndex">
 
-	<div class="container">
+	<c:import url="menuBar.jsp"></c:import>
 
-		<table class="table">
+	<div class="subBackground">
+		<div class="container-fluid">
 
-			<thead class="thead-dark">
-				<tr>
-					<th scope="col">Posição</th>
-					<th scope="col">Nome usuário</th>
-					<th scope="col">Login</th>
-					<th scope="col">Pontos</th>
-				</tr>
-			</thead>
+			<c:if test="${not empty param.rankingResult}">
+				<div class="alert alert-danger alert-dismissible fade show"
+					role="alert">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<strong>Erro - </strong>Não foi possível exibir o ranking.
+					${param.rankingResult}
+				</div>
+			</c:if>
 
-
-			<tbody>
-				<c:forEach var="usuario" items="${listaRanking}">
-					<tr>
-						<td>${usuario.colocao}</td>
-						<td>${usuario.nome}</td>
-						<td>${usuario.login}</td>
-						<td>${usuario.pontos}</td>
-					</tr>
-
-				</c:forEach>
-
-			</tbody>
-		</table>
-
-		<div class="d-flex justify-content-end">
-			<a class="btn btn-primary" href="ListarTopicos">Tópicos</a>
+			<c:choose>
+				<c:when test="${not empty listaRanking}">
+					<table class="table">
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">Posição</th>
+								<th scope="col">Nome usuário</th>
+								<th scope="col">Login</th>
+								<th scope="col">Pontos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="usuario" items="${listaRanking}">
+								<tr>
+									<td>${usuario.colocao}</td>
+									<td>${usuario.nome}</td>
+									<td>${usuario.login}</td>
+									<td>${usuario.pontos}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:when>
+				<c:otherwise>
+					<div class="d-flex justify-content-center alert alert-dark"
+						role="alert">Sem usuários para mostrar o ranking...</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 
