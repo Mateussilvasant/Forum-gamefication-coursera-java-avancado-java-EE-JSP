@@ -5,6 +5,10 @@ import java.util.List;
 import dto.UsuarioTO;
 import model.Usuario;
 
+/**
+ * @author mateussilva
+ *
+ */
 public interface IUsuarioDAO
 {
     void cadastrarUsuario(Usuario u) throws Exception;

@@ -1,5 +1,9 @@
 package dto;
 
+/**
+ * @author mateussilva
+ *
+ */
 public class ComentarioTO
 {
     private String conteudo;

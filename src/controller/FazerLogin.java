@@ -15,10 +15,16 @@ import model.Usuario;
 import services.TopicoService;
 import services.UsuarioService;
 
+/**
+ * @author mateussilva
+ *
+ */
 @WebServlet("/FazerLogin")
 public class FazerLogin extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
+    private TopicoService topicoService = new TopicoService();
+    private UsuarioService usuarioService = new UsuarioService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -30,8 +36,6 @@ public class FazerLogin extends HttpServlet
 	    Usuario usuario;
 	    try
 	    {
-		UsuarioService usuarioService = new UsuarioService();
-		TopicoService topicoService = new TopicoService();
 
 		usuario = usuarioService.realizarLogin(login, senha);
 

@@ -6,6 +6,10 @@ import dto.ComentarioTO;
 import model.Comentario;
 import model.dao.ComentarioDAO;
 
+/**
+ * @author mateussilva
+ *
+ */
 public class ComentarioService
 {
     private ComentarioDAO comentarioDAO;

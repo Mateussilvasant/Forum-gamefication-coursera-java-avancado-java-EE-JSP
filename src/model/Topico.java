@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * @author mateussilva
+ *
+ */
 public class Topico
 {
     private String titulo;

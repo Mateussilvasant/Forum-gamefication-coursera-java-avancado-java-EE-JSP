@@ -10,10 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 import model.Usuario;
 import services.UsuarioService;
 
+/**
+ * @author mateussilva
+ *
+ */
 @WebServlet("/CadastrarUsuario")
 public class CadastrarUsuario extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
+    private UsuarioService service = new UsuarioService();
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -35,8 +40,6 @@ public class CadastrarUsuario extends HttpServlet
 	usuario.setLogin(login);
 	usuario.setSenha(senha);
 	usuario.setNome(nome);
-
-	UsuarioService service = new UsuarioService();
 
 	try
 	{

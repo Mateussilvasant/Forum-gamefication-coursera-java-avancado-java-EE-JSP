@@ -1,5 +1,9 @@
 package dto;
 
+/**
+ * @author mateussilva
+ *
+ */
 public class UsuarioTO
 {
     private int colocao;

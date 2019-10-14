@@ -10,6 +10,10 @@ import java.util.List;
 import dto.ComentarioTO;
 import model.Comentario;
 
+/**
+ * @author mateussilva
+ *
+ */
 public class ComentarioDAO implements IComentarioDAO
 {
 

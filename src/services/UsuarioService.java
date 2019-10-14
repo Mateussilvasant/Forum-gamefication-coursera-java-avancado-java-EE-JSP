@@ -6,6 +6,10 @@ import dto.UsuarioTO;
 import model.Usuario;
 import model.dao.UsuarioDAO;
 
+/**
+ * @author mateussilva
+ *
+ */
 public class UsuarioService
 {
     private UsuarioDAO dao;

@@ -10,6 +10,10 @@ import java.util.List;
 import dto.TopicoTO;
 import model.Topico;
 
+/**
+ * @author mateussilva
+ *
+ */
 public class TopicoDAO implements ITopicoDAO
 {
 

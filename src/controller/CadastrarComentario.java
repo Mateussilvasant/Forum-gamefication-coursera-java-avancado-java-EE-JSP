@@ -16,10 +16,16 @@ import services.UsuarioService;
 /**
  * Servlet implementation class CadastrarComentario
  */
+/**
+ * @author mateussilva
+ *
+ */
 @WebServlet("/CadastrarComentario")
 public class CadastrarComentario extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
+    private ComentarioService comentarioService = new ComentarioService();
+    private UsuarioService usuarioService = new UsuarioService();
 
     /**
      * Recebe a requisição com dados do comentário, cadastra comentário e
@@ -39,9 +45,6 @@ public class CadastrarComentario extends HttpServlet
 	    Usuario usuario = ((Usuario) req.getSession().getAttribute("usuarioLogado"));
 	    idTopico = Integer.parseInt(req.getParameter("idTopico"));
 	    String conteudo = req.getParameter("textoComentario");
-
-	    ComentarioService comentarioService = new ComentarioService();
-	    UsuarioService usuarioService = new UsuarioService();
 
 	    /* Adiciona o comentário ao banco de dados */
 	    Comentario comentario = new Comentario();

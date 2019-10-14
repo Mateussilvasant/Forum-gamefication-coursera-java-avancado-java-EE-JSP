@@ -14,10 +14,15 @@ import dto.TopicoTO;
 import model.Usuario;
 import services.TopicoService;
 
+/**
+ * @author mateussilva
+ *
+ */
 @WebServlet("/ListarTopicos")
 public class ListarTopicos extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
+    private TopicoService topicoService = new TopicoService();
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -41,8 +46,6 @@ public class ListarTopicos extends HttpServlet
 
 	try
 	{
-
-	    TopicoService topicoService = new TopicoService();
 
 	    List<TopicoTO> topicos = topicoService.getListaTopicos();
 	    topicoService.addConteudoResumidoLista(topicos);

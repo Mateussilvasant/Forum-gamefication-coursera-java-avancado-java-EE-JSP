@@ -12,17 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 import dto.UsuarioTO;
 import services.UsuarioService;
 
+/**
+ * @author mateussilva
+ *
+ */
 @WebServlet("/ListarRanking")
 public class ListarRanking extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
+    private UsuarioService usuarioService = new UsuarioService();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	request.setCharacterEncoding("utf-8");
 	response.setCharacterEncoding("utf-8");
-
-	UsuarioService usuarioService = new UsuarioService();
 
 	try
 	{

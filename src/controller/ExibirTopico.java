@@ -13,10 +13,16 @@ import dto.TopicoTO;
 import services.ComentarioService;
 import services.TopicoService;
 
+/**
+ * @author mateussilva
+ *
+ */
 @WebServlet("/ExibirTopico")
 public class ExibirTopico extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
+    private TopicoService topicoService = new TopicoService();
+    private ComentarioService comentarioService = new ComentarioService();
 
     private void doExecute(HttpServletRequest req, HttpServletResponse resp) throws IOException
     {
@@ -38,9 +44,6 @@ public class ExibirTopico extends HttpServlet
 		idTopico = Integer.parseInt(req.getParameter("topicoID"));
 
 	    }
-
-	    TopicoService topicoService = new TopicoService();
-	    ComentarioService comentarioService = new ComentarioService();
 
 	    TopicoTO topico = topicoService.consultarTopico(idTopico);
 	    topico.setListaComentarios(comentarioService.getListaComentarios(topico.getNumeroTopico()));

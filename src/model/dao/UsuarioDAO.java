@@ -11,6 +11,10 @@ import java.util.List;
 import dto.UsuarioTO;
 import model.Usuario;
 
+/**
+ * @author mateussilva
+ *
+ */
 public class UsuarioDAO implements IUsuarioDAO
 {
 

@@ -5,6 +5,10 @@ import java.util.List;
 import dto.TopicoTO;
 import model.Topico;
 
+/**
+ * @author mateussilva
+ *
+ */
 public interface ITopicoDAO
 {
     void inserirTopico(Topico topico) throws Exception;

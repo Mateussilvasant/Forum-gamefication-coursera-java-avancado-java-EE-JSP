@@ -12,10 +12,16 @@ import model.Usuario;
 import services.TopicoService;
 import services.UsuarioService;
 
+/**
+ * @author mateussilva
+ *
+ */
 @WebServlet("/CadastrarTopico")
 public class CadastrarTopico extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
+    private TopicoService topicoService = new TopicoService();
+    private UsuarioService usuarioService = new UsuarioService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -34,9 +40,6 @@ public class CadastrarTopico extends HttpServlet
 	    topico.setTitulo(titulo);
 	    topico.setConteudo(conteudo);
 	    topico.setLogin(usuario.getLogin());
-
-	    TopicoService topicoService = new TopicoService();
-	    UsuarioService usuarioService = new UsuarioService();
 
 	    try
 	    {

@@ -5,6 +5,10 @@ import java.util.List;
 import dto.ComentarioTO;
 import model.Comentario;
 
+/**
+ * @author mateussilva
+ *
+ */
 public interface IComentarioDAO
 {
     List<ComentarioTO> getListaComentarios(int numeroTopico) throws Exception;

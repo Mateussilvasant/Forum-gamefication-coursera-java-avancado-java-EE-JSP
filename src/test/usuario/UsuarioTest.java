@@ -19,6 +19,10 @@ import dto.UsuarioTO;
 import model.Usuario;
 import model.dao.UsuarioDAO;
 
+/**
+ * @author mateussilva
+ *
+ */
 class UsuarioTest
 {
 

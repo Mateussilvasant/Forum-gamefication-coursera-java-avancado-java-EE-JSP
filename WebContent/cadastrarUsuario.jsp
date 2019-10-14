@@ -18,7 +18,7 @@
 		<form method="POST" action="CadastrarUsuario">
 			<div class="text-center">
 				<h2>
-					<b>Cadastra-se no fórum, é rápido!</b>
+					<b>Cadastre-se no fórum, é rápido!</b>
 				</h2>
 			</div>
 

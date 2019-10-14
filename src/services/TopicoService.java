@@ -6,6 +6,10 @@ import dto.TopicoTO;
 import model.Topico;
 import model.dao.TopicoDAO;
 
+/**
+ * @author mateussilva
+ *
+ */
 public class TopicoService
 {
 

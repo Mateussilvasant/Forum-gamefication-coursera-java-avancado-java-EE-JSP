@@ -24,6 +24,10 @@ import model.Comentario;
 import model.dao.ComentarioDAO;
 import test.ResetSequenceOperation;
 
+/**
+ * @author mateussilva
+ *
+ */
 class ComentariosTest
 {
 

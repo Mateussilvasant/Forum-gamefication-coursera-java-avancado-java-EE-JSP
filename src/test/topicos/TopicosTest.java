@@ -21,6 +21,10 @@ import model.Topico;
 import model.dao.TopicoDAO;
 import test.ResetSequenceOperation;
 
+/**
+ * @author mateussilva
+ *
+ */
 class TopicosTest
 {
 

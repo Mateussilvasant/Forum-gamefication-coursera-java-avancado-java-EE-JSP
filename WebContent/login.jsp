@@ -46,7 +46,7 @@
 
 				<div class="text-center">
 					<p>
-						Não tem acesso ao fórum? <a href="cadastrarUsuario.jsp">Cadastrar-se</a>
+						Não tem acesso ao fórum? <a href="cadastrarUsuario.jsp">Cadastre-se</a>
 					</p>
 				</div>
 

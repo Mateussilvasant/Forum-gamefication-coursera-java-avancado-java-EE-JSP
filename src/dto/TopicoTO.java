@@ -2,6 +2,10 @@ package dto;
 
 import java.util.List;
 
+/**
+ * @author mateussilva
+ *
+ */
 public class TopicoTO
 {
 

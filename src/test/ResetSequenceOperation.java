@@ -8,6 +8,10 @@ import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.operation.DatabaseOperation;
 
+/**
+ * @author mateussilva
+ *
+ */
 public class ResetSequenceOperation extends DatabaseOperation
 {
 
