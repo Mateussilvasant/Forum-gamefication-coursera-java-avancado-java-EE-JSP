@@ -1,0 +1,71 @@
+@charset "utf-8";
+
+html {
+	height: 100%;
+}
+
+.bodyCenter {
+	height: 100%;
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: flex;
+	-ms-flex-align: center;
+	-ms-flex-pack: center;
+	-webkit-box-align: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	align-items: center;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: #f5f5f5;
+	padding-bottom: 40px;
+}
+
+.bodyIndex {
+	background: rgb(213, 213, 213);
+	background: radial-gradient(circle, rgba(213, 213, 213, 1) 0%,
+		rgba(168, 169, 171, 1) 100%);
+}
+
+.formLogin {
+	width: 100%;
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.formTopico {
+	margin: 0 auto;
+	padding: 1%;
+	width: 100%;
+}
+
+.cardTopico {
+	padding: 20px;
+	margin-top: 50px;
+}
+
+.card-header {
+	background-color: #343434;
+}
+
+.card {
+	
+}
+
+.tituloCriador {
+	color: #F7F3F3;
+}
+
+.subBackground {
+	background-color: #F4F4F8;
+	margin: 5%;
+	padding-bottom: 1%;
+	padding-top: 1%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+.tituloTopico {
+	color: #40474E;
+}
